@@ -48,11 +48,24 @@ In constrast, `xmd` works like:
 
 ---------------------------------------------------------------------------
 
-# Joel's Notebook War
+## Why not jupyter `.ipynb` notebooks
+* .json inner representation is not human-readable
+* VCS troubles
+* code not easily editable as plain-text
+
+## Why not Rmarkdown `.Rmd` documents
+* tightly coupled to the R ecosystem
+* templating is underdeveloped
+* support for other languages only through R driver libraries
+* capitalized file extension
+
+---------------------------------------------------------------------------
+
+## Joel's Notebook War
 
 How does this address [Joel’s thoughts on notebooks](https://yihui.org/en/2018/09/notebook-war/)?
 
-## [complaints](https://yihui.org/en/2018/09/notebook-war/#joel-s-complaints-about-notebooks)
+### [complaints](https://yihui.org/en/2018/09/notebook-war/#joel-s-complaints-about-notebooks)
 
 TODO
 
@@ -68,6 +81,6 @@ TODO
 10. Notebooks make it easy to teach poorly
 11. Notebooks make it hard to teach well
 
-## [How you could win Joel over](https://yihui.org/en/2018/09/notebook-war/#how-you-could-win-joel-over)
+### [How you could win Joel over](https://yihui.org/en/2018/09/notebook-war/#how-you-could-win-joel-over)
 
 TODO
