@@ -9,7 +9,7 @@ Regular [markdown](https://daringfireball.net/projects/markdown/) can go in here
 print("hello world!")
 ```
 
-```{R}
+```{r}
 print("hello world!")
 ```
 

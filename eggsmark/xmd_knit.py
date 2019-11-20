@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 import logging
 import sys
 from subprocess import run
-
+import os.path
 
 def parse_args(argv):
     # =========================================================================
@@ -38,23 +38,21 @@ def parse_args(argv):
     return args
 
 
-def main(args):
-    OUT_FILENAME = 'basic_xmd.html'
-    OUT_DIR = 'tests/output/'
-    OUT_FPATH = OUT_DIR + OUT_FILENAME
+def main(*, input_path, output_path, verbose=0):
+    OUT_DIR, OUT_FILENAME = os.path.split(output_path)
     result = run([
         'R',
         '-e',
         (
             'rmarkdown::render('
-                '"examples/basic.x.md", '
+                '"{}", '
                 'output_dir="{}", '
                 'output_file="{}"'
             ')'
-        ).format(OUT_DIR, OUT_FILENAME)
+        ).format(input_path, OUT_DIR, OUT_FILENAME)
     ])
 
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args)
+    main(**vars(args))
