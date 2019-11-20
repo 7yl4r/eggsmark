@@ -9,7 +9,7 @@ These competing technologies provide alternate approaches to the problem of orga
 Both technologies work with multiple languages but generally speaking: jupyter is best for python and Rmd is best for R.
 This project establishes a framework for code notebooks that is language-agnostic.
 "Knit-engines" can be implemented in any language.
-The default knit-engine (py-knit) is written in python.
+The default knit-engine is currently a thin python wrapper around the Rmarkdown library.
 
 Both technologies are tied to a operational kernel which computes the notebook output.
 This executable-markdown (xmd) project asserts that code notebooks should be human-legible raw text notebook files which are kernel-independent.
