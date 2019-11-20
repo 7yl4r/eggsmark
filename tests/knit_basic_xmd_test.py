@@ -17,6 +17,9 @@ def md5(fname):
 
 
 class Test_basic_xmd_test(TestCase):
+    def setUp(self):  # ensure outputs do not exist
+        run(['rm', '-rf', 'tests/output/*html'])
+
     def test_can_default_knit_basic_xmd(self):
         """Knit basic xmd example"""
         INP_FPATH = "examples/basic.x.md"
@@ -32,4 +35,4 @@ class Test_basic_xmd_test(TestCase):
         ])
 
         print(result)
-        self.assertEqual(md5(OUT_FPATH), '51d6839df5e56948ac3279075bdf9641')
+        self.assertEqual(md5(OUT_FPATH), '47324410f01d30bfb4cf808c6595a75d')

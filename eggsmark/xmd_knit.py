@@ -2,6 +2,7 @@
 from argparse import ArgumentParser
 import logging
 import sys
+from subprocess import run
 
 
 def parse_args(argv):
@@ -15,6 +16,12 @@ def parse_args(argv):
         "-v", "--verbose", help="increase output verbosity",
         action="count",
         default=0
+    )
+    parser.add_argument(
+        "input_path", help="input xmd"
+    )
+    parser.add_argument(
+        "output_path", help="output .html"
     )
 
     args = parser.parse_args()
