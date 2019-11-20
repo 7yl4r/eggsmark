@@ -40,6 +40,12 @@ def parse_args(argv):
 
 def main(*, input_path, output_path, verbose=0):
     OUT_DIR, OUT_FILENAME = os.path.split(output_path)
+    tmp_path = "/tmp/{}.Rmd".format(os.path.basename(input_path))
+    run([
+        'cp',
+        input_path,
+        tmp_path
+    ])
     result = run([
         'R',
         '-e',
@@ -49,8 +55,10 @@ def main(*, input_path, output_path, verbose=0):
                 'output_dir="{}", '
                 'output_file="{}"'
             ')'
-        ).format(input_path, OUT_DIR, OUT_FILENAME)
+        ).format(tmp_path, OUT_DIR, OUT_FILENAME)
     ])
+    print(result)
+    # TODO: assert result is zero or...?
 
 
 if __name__ == "__main__":
