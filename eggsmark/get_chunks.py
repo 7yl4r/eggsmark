@@ -3,25 +3,37 @@ import logging
 SUPPORTED_LANGUAGES = ["python", "r"]
 
 
-def get_chunks(lines, n):
-    with open(input_path, "r") as xmd_file:
-        n = 0
-        lines = xmd_file.readlines()
-        print(lines)
-        # _get_next_chunk(lines, n)
-        # TODO:
-        # 1. for each chunk
-        #     0. inject EGGS.get() globals from other chunks?
-        #     a. run the knitter(s)
-        #     3. save EGGS.put() globals for other chunks?
-        #     b. inject output
-        chunk, chunk_info = _get_next_chunk(lines, n)
+def get_chunks(lines):
+    logger = logging.getLogger("eggsmark.{}".format(
+        __name__,
+    ))
+    chunks = []
+    chunks_info = []
+    line_n = 0
+    while line_n < len(lines):
+        try:
+            chunk, chunk_info = _get_next_chunk(lines, line_n)
+            logger.debug("chunk {:02d} found l{:04d}-l{:04d}".format(
+                len(chunks_info), chunk_info['start'], chunk_info['end']
+            ))
+            chunks.append(chunk)
+            chunks_info.append(chunk_info)
+            line_n = chunk_info['end']
+        except EOFError:
+            return chunks, chunks_info
+    # TODO:
+    # 1. for each chunk
+    #     0. inject EGGS.get() globals from other chunks?
+    #     a. run the knitter(s)
+    #     3. save EGGS.put() globals for other chunks?
+    #     b. inject output
 
 
 def _get_next_chunk(lines, n):
     logger = logging.getLogger("eggsmark.{}".format(
         __name__,
     ))
+    n_original = n
     inside_a_chunk = False
     while n < len(lines):
         logger.debug("l{:04d} / {:04d}".format(n, len(lines)))
@@ -44,3 +56,6 @@ def _get_next_chunk(lines, n):
             else:
                 chunk_lines.append(lines[n])
         n += 1  # next line
+    raise EOFError("no chunks in l{:04d}-{:04d} (EOF)".format(
+        n_original, n
+    ))
