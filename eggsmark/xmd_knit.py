@@ -3,6 +3,8 @@ from subprocess import run
 import os.path
 import logging
 
+from eggsmark.get_chunks import get_chunks
+
 
 def knit(
     input_path, output_path, verbose=0, quiet=False
@@ -20,7 +22,18 @@ def knit(
     ])
     logger.info("knitting...")
 
-    # TODO: use _get_chunks here instead
+    # TDOO: DO THIS:
+    # with open(input_path) as f_obj:
+    #     param_eggs = get_header_param_eggs(f_obj)
+    #     for chunk, chunk_info in get_chunks(f_obj.readlines()):
+    #         #     0. inject EGGS.get() globals from other chunks?
+    #         #     a. run the knitter(s)
+    #         result_output, new_eggs = execute_chunk(chunk, param_eggs)
+    #         #     3. save EGGS.put() globals for other chunks?
+    #         # param_eggs.extend(new_eggs)
+    #         replace_in_output_file(chunk_info, result_output)
+    #         # b. inject output
+    # TODO: INSTEAD OF THIS:
     result = run([
         'R',
         '-e',

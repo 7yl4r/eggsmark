@@ -4,6 +4,9 @@ SUPPORTED_LANGUAGES = ["python", "r"]
 
 
 def get_chunks(lines):
+    """
+    Get a list of the chunks from an xmd file
+    """
     logger = logging.getLogger("eggsmark.{}".format(
         __name__,
     ))
@@ -21,12 +24,6 @@ def get_chunks(lines):
             line_n = chunk_info['end']
         except EOFError:
             return chunks, chunks_info
-    # TODO:
-    # 1. for each chunk
-    #     0. inject EGGS.get() globals from other chunks?
-    #     a. run the knitter(s)
-    #     3. save EGGS.put() globals for other chunks?
-    #     b. inject output
 
 
 def _get_next_chunk(lines, n):
