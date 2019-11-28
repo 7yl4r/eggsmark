@@ -29,10 +29,10 @@ class Test_basic_xmd_test(TestCase):
         OUT_FPATH = OUT_DIR + OUT_FILENAME
 
         result = run([
-            'eggsmark/xmd_knit.py',
+            'python3', '-m', 'eggsmark', 'knit',
             INP_FPATH,
             OUT_FPATH
         ])
 
         print(result)
-        self.assertEqual(md5(OUT_FPATH), '47324410f01d30bfb4cf808c6595a75d')
+        self.assertEqual(md5(OUT_FPATH), 'ce6d19eb5aadae4bf8274df43447bf57')

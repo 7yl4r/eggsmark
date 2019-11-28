@@ -18,6 +18,6 @@ This raw text file is designed to be maximally human-legible and more machine-le
 
 To knit this file into html you can do:
 
-```{bash}
+```{bash, eval=FALSE}
 xmd_knit basic.x.md ./tests/output/basic.x.html
 ```
