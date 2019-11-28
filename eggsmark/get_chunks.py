@@ -15,7 +15,7 @@ def get_chunks(lines, n):
         #     a. run the knitter(s)
         #     3. save EGGS.put() globals for other chunks?
         #     b. inject output
-        _get_next_chunk(lines, n)
+        chunk, chunk_info = _get_next_chunk(lines, n)
 
 
 def _get_next_chunk(lines, n):
@@ -28,6 +28,7 @@ def _get_next_chunk(lines, n):
         start_line = lines[n]
         # if entering chunk
         if not inside_a_chunk and start_line.startswith(r"```{"):
+            chunk_start = n
             language = start_line.split("}")[0].split(",")[0][4:]
             if language not in SUPPORTED_LANGUAGES:
                 raise ValueError(
@@ -38,7 +39,8 @@ def _get_next_chunk(lines, n):
                 chunk_lines = []
         elif inside_a_chunk:
             if lines[n].strip().endswith("```"):
-                return chunk_lines
+                chunk_end = n
+                return chunk_lines, {"start": chunk_start, "end": chunk_end}
             else:
                 chunk_lines.append(lines[n])
         n += 1  # next line
