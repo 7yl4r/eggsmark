@@ -24,7 +24,7 @@ long_description = read('README.md')  # , 'CHANGELOG.md')
 # * `pip install .`
 # * `pip install -r requirements.txt`
 _tests_require = [
-    line.strip() for line in open('requirements_tests.txt')
+    line.strip() for line in open('requirements_test.txt')
     if line.strip() and not line.strip().startswith('--')
 ]
 

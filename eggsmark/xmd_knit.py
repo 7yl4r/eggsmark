@@ -36,8 +36,8 @@ def _get_chunks(lines, n):
                 n += 1  # next line
 
 
-def main(
-    *, input_path, output_path, verbose=0, quiet=False
+def knit(
+    input_path, output_path, verbose=0, quiet=False
 ):
     logger = logging.getLogger("eggsmark.{}".format(
         __name__,

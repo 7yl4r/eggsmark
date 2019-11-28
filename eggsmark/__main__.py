@@ -4,7 +4,7 @@ import logging
 from argparse import ArgumentParser
 
 import eggsmark
-from eggsmark.xmd_knit import main as knit
+from eggsmark.xmd_knit import knit
 
 
 def parse_args(argvs):
