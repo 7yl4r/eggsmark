@@ -3,6 +3,9 @@ HEADER_MINIMAL_PARAMS = [
     "params:",
     "    x: True",
 ]
+HEADER_MINIMAL_PARAMS_DICT = {
+    "x": True
+}
 
 # === chunks
 MINIMAL_CHUNK_LINES_1 = ["print('hellow')"]
@@ -31,6 +34,7 @@ XMD_LINES_TWO_CHUNK = [
     "```"
 ]
 XMD_LINES_W_HEADER = [
+    "---",
     *HEADER_MINIMAL_PARAMS,
     "---",
     "```{python}",
