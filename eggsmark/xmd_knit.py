@@ -3,38 +3,6 @@ from subprocess import run
 import os.path
 import logging
 
-SUPPORTED_LANGUAGES = ["python", "r"]
-
-
-def _get_chunks(lines, n):
-    with open(input_path, "r") as xmd_file:
-        n = 0
-        lines = xmd_file.readlines()
-        print(lines)
-        # _get_next_chunk(lines, n)
-        # TODO:
-        # 1. for each chunk
-        #     0. inject EGGS.get() globals from other chunks?
-        #     a. run the knitter(s)
-        #     3. save EGGS.put() globals for other chunks?
-        #     b. inject output
-        while n < len(lines):
-            start_line = lines[n]
-            if start_line.startswith(r"```{"):  # if entering chunk
-                language = start_line.split("}")[0].split(",")[0][4:]
-                if language not in SUPPORTED_LANGUAGES:
-                    raise ValueError(
-                        "unknown programming language '{}'".format(language)
-                    )
-                else:
-                    chunk_lines = []
-                    while (
-                        not lines[n+len(chunk_lines)].strip().endswith("```")
-                    ):
-                        chunk_lines.append(lines[n+len(chunk_lines)])
-            else:
-                n += 1  # next line
-
 
 def knit(
     input_path, output_path, verbose=0, quiet=False
