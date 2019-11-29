@@ -31,9 +31,9 @@ class Test_get_header_lines(TestCase):
 class Test_get_param_eggs(TestCase):
     def test_get_params_eggs(self):
         """Get the minimal header param eggs from file contents"""
-        from eggsmark.get_param_eggs import get_param_eggs
+        from eggsmark.get_param_eggs import get_header_param_eggs
         from eggsmark._test_xmd_lines import XMD_LINES_W_HEADER
         from eggsmark._test_xmd_lines import HEADER_MINIMAL_PARAMS_DICT
 
-        header_param_eggs = get_param_eggs(XMD_LINES_W_HEADER)
+        header_param_eggs = get_header_param_eggs(XMD_LINES_W_HEADER)
         self.assertEqual(header_param_eggs, HEADER_MINIMAL_PARAMS_DICT)

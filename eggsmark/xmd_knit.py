@@ -4,6 +4,7 @@ import os.path
 import logging
 
 from eggsmark.get_chunks import get_chunks
+from eggsmark.get_param_eggs import get_header_param_eggs
 
 
 def knit(
@@ -23,16 +24,14 @@ def knit(
     logger.info("knitting...")
 
     # TDOO: DO THIS:
-    # with open(input_path) as f_obj:
-    #     param_eggs = get_header_param_eggs(f_obj)
-    #     for chunk, chunk_info in get_chunks(f_obj.readlines()):
-    #         #     0. inject EGGS.get() globals from other chunks?
-    #         #     a. run the knitter(s)
-    #         result_output, new_eggs = execute_chunk(chunk, param_eggs)
-    #         #     3. save EGGS.put() globals for other chunks?
-    #         # param_eggs.extend(new_eggs)
-    #         replace_in_output_file(chunk_info, result_output)
-    #         # b. inject output
+    with open(input_path) as f_obj:
+        param_eggs = get_header_param_eggs(f_obj.readlines())
+        for chunk, chunk_info in get_chunks(f_obj.readlines()):
+            if chunk_info['language'] == "python":
+                result_output, new_eggs = knit_chunk(chunk, param_eggs)
+        #         # param_eggs.extend(new_eggs)
+        #         TODO: replace_in_output_file(chunk_info, result_output)
+        #         # b. inject output
     # TODO: INSTEAD OF THIS:
     result = run([
         'R',

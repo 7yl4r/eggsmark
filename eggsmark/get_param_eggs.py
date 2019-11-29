@@ -4,7 +4,7 @@ Read parameter eggs from top of xmd file.
 import yaml
 
 
-def get_param_eggs(file_lines):
+def get_header_param_eggs(file_lines):
     return _get_header_param_eggs(
         _get_header_lines(file_lines)
     )
