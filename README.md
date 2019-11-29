@@ -1,3 +1,6 @@
+# :warning: This project was created back when I underestimated how awesome jupyter is :warning:
+I have abandoned this and am using jupyter now.
+
 # eggsmark
 :egg: executable markdown framework
 
